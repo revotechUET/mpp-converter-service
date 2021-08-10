@@ -110,5 +110,21 @@ public class FilesController {
             return null;
         }
     }
+
+    @GetMapping("/files/json/{filename:.+}")
+    public ResponseEntity<Project> getJsonFile(@PathVariable String filename) {
+        Resource file = storageService.load(filename);
+        Project jsonProject = convertService.toJsonProject(file.getFilename());
+
+        if (jsonProject != null) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(jsonProject);
+        }
+
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
+                .body(new Project("Could not read file: " + file.getFilename()));
+
+    }
+
 }
 
