@@ -6,8 +6,9 @@ docker build -t app-start .
 ```
 
 ### Run app
+port: your port
 ```
-docker run -p8080:8080 -p8081:8081 app-start
+docker run -it --rm -p(port):8080 -p(port):8081 app-start
 ```
 
 ### Project 
