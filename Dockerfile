@@ -1,11 +1,10 @@
 FROM node:12
-RUN apt-get update && apt-get install -y openjdk-8-jdk
+RUN apt-get update && apt-get install -y openjdk-8-jdk \
+    && apt-get install -y maven
 WORKDIR /usr/java-server
 COPY preview-mpp-java-server/src ./src
-COPY preview-mpp-java-server/.mvn ./.mvn
-COPY preview-mpp-java-server/mvnw mvnw
 COPY preview-mpp-java-server/pom.xml pom.xml
-RUN ./mvnw clean install
+RUN mvn clean install
 
 WORKDIR ../table-service
 COPY  table-renderer-service/package*.json ./

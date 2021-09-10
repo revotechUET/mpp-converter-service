@@ -1,12 +1,5 @@
 ## Start service
 
-### Setup
-Go in the preview-mpp-java-server folder and install maven wrapper
-```
-mvn -N io.takari:maven:0.7.7:wrapper
-```
-maven wrapper [See more](https://github.com/takari/maven-wrapper.git)
-
 ### Build image docker
 ```
 docker build -t app-start .
